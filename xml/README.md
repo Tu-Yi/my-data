@@ -1,5 +1,7 @@
 # XML
 
+[练习](code/source/readme.md)
+
 ## XML  的基本语法
 
 - 有且只有一个根元素

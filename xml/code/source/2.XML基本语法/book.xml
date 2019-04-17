@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!--文档声明，必须放在第一行-->
+<!--根元素有且只有一个-->
+<books>
+	<book id="1001">
+		<name>java开发实战</name>
+		<author>张小三</author><!--</Author>--><!--不正确，因为xml严格区分大小写-->
+		<price>98.5</price>
+	</book>
+		<!--</price>是否会报错,会，因为嵌套不正确-->
+</books>

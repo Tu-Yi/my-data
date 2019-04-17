@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book id="1001">
+		<name>java开发实战</name>
+		<author>张小三</author>
+		<price>98.5</price>
+	</book>
+</books>
