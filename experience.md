@@ -6,7 +6,13 @@
 
 [function](experience/sql/function.sql)
 
+[groupfunction](experience/sql/groupfunction.sql)
 
+[mutilist](experience/sql/mutilist.sql)
+
+[ddl](experience/sql/ddl.sql)
+
+[dml](experience/sql/dml.sql)
 
 
 
