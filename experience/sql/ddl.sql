@@ -7,7 +7,7 @@ DROP DATABASE test
 CREATE DATABASE test DEFAULT CHARACTER SET utf8 
 use test
 user sys
-CREATE TABLE employee3(employee_id int,last_name VARCHAR(30),salary FLOAT(8,2))
+CREATE TABLE employee4(employee_id int,last_name VARCHAR(30),salary FLOAT(8,2))
 SELECT from employ
 
 -- DDL
