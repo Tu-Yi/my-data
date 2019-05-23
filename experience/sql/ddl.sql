@@ -1,5 +1,29 @@
+-- mysql
+CREATE DATABASE test DEFAULT CHARACTER SET utf8  --创建数据库
+SHOW DATABASES
+SELECT * from information_schema.SCHEMATA where SCHEMA_name = 'test' -- 查看字符
+DROP DATABASE test
+-- 选择数据库
+CREATE DATABASE test DEFAULT CHARACTER SET utf8 
+use test
+user sys
+CREATE TABLE employee3(employee_id int,last_name VARCHAR(30),salary FLOAT(8,2))
+SELECT from employ
+
 -- DDL
 -- TABLE
+-- mysql
+CREATE TABLE employees(employee_id int,last_name VARCHAR(30),salary FLOAT(8,2))
+SHOW TABLES
+drop TABLE employees2
+ALTER table employees RENAME employee
+alter table employee CHANGE COLUMN last_name name VARCHAR(30) --修改列名
+alter table employee MODIFY name VARCHAR(40)  --修改列类型
+alter table employee add COLUMN commission_pct float(4,2)  --增加列
+alter TABLE employee DROP COLUMN commission_pct
+DESC employee
+
+-- oracle
 CREATE TABLE dept(deptno NUMBER(2),dname VARCHAR2(14),loc VARCHAR2(14))
 CREATE TABLE readyea as select EMPLOYEE_ID,LAST_NAME,SALARY from EMPLOYEES where DEPARTMENT_ID=80
 alter table dept add(SALARY NUMBER(8,2));
