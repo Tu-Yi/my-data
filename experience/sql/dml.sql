@@ -1,5 +1,33 @@
 -- DML INSERT UPDATE DELETE
 
+-- mysql
+-- insert
+INSERT INTO departments(department_name,location_id) VALUES('readyea',1)
+-- 主键 自增列占位 DEFAULT null 0
+insert into departments VALUES(default,"development",2) 
+insert into departments VALUES(null,"development1",3) 
+insert into departments VALUES(0,"teaching",4) 
+-- 默认值
+CREATE TABLE emp3(emp_id int PRIMARY KEY auto_increment, name VARCHAR(30), address VARCHAR(50) DEFAULT "unknown")
+alter table emp3 add COLUMN job_id int DEFAULT 0
+INSERT INTO emp3(name) VALUES("admin")
+insert into emp3 values(DEFAULT,"lu1",DEFAULT,DEFAULT)
+-- updata
+update emp3 set address = "cd" where emp_id=1
+update emp3 e,(select address from emp3 where emp_id=1) t set e.address=t.address  where e.emp_id=2
+update emp3 e set e.address = (select t1.address from (select emp_id, address from emp3) t1 where t1.emp_id=1)  where e.emp_id=2
+-- delete
+DELETE from emp3 where emp_id=1
+TRUNCATE table emp3  --自增列会从1开始
+
+-- 事务
+START TRANSACTION
+insert into emp3 values(DEFAULT,"lu2",DEFAULT,DEFAULT)
+COMMIT
+
+
+
+-- oracle
 -- INSERT
 INSERT INTO DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME,MANAGER_ID,LOCATION_ID) VALUES(280,'teaching',180,2000)
 INSERT INTO DEPARTMENTS VALUES(290,'readyea',149,2000) 

@@ -37,6 +37,46 @@ truncate table dept;  --删除所有数据保留表，截断表时不能给条�
 drop table readyea;  --隐式事务
 
 -- 约束 not NULL UNIQUE primary key  foreign key check
+
+-- mysql 不支持check
+-- 创建表加约束
+CREATE TABLE departments(
+department_id int primary key auto_increment,
+department_name VARCHAR(30) UNIQUE,
+location_id int not null
+)
+desc departments
+show keys from departments
+
+CREATE TABLE employees(
+employees_id int primary key auto_increment,
+last_name VARCHAR(30) not null,
+email VARCHAR(40) not null UNIQUe,
+dept_id int,
+CONSTRAINT emp_fk FOREIGN KEY(dept_id) REFERENCES departments(department_id)
+)
+-- 修改主键 自动增长
+ALTER TABLE employee4 add PRIMARY key (employee_id)  
+ALTER table employee4 MODIFY employee_id int auto_increment
+ALTER table employee4 MODIFY employee_id int  --删除自动增长
+alter table employee4 drop PRIMARY KEY --删除主键
+-- 修改非空
+ALTER table employee4 MODIFY salary float(8,2) not null;
+ALTER table employee4 MODIFY salary float(8,2) null;
+-- 修改唯一
+alter table employee4 add CONSTRAINT emp_uk UNIQUE(last_name)
+alter table employee4 drop key emp_uk
+-- 修改外键
+alter table employee4 add CONSTRAINT emp4_fk FOREIGN key(dept_id) REFERENCES departments(department_id)
+alter table employee4 drop FOREIGN key emp4_fk
+alter table employee4 drop index emp4_fk  --删除外键的索引
+
+desc employee4
+show keys from employees
+
+
+
+-- oracle
 -- NOT NULL
 create table dept80(id number,name varchar2(20) not null, salary number constraint dept80_notn not null);
 alter table dept80 add(location_id NUMBER)

@@ -1,5 +1,16 @@
 -- select
 
+-- mqsql
+select * from departments where location_id=4
+alter table employees add column salary float(9,2)
+select last_name, salary*12+100 from employees
+alter table employees add column commistion_pct float(9,2)
+select salary+commistion_pct from employees  -- 空值计算返回都是空
+select last_name name,salary 'salary me' FROM employees --别名 单引号双引号都可以
+select CONCAT(employees_id,'#',last_name,'#',email,'#',salary,'#',commistion_pct) from employees  -- 连接使用concat
+select DISTINCT dept_id from employees
+
+
 -- 表达式
 select EMPLOYEE_ID,FIRST_NAME, SALARY, (SALARY*12+100) as SALARY from EMPLOYEES
 select EMPLOYEE_ID,FIRST_NAME, SALARY, (SALARY+100)*12 as SALARY from EMPLOYEES
@@ -41,7 +52,8 @@ select LAST_NAME,SALARY,EMPLOYEE_ID,MANAGER_ID from EMPLOYEES where MANAGER_ID I
 SELECT	LAST_NAME FROM EMPLOYEES WHERE LAST_NAME LIKE '%A%'
 SELECT	LAST_NAME FROM EMPLOYEES WHERE LAST_NAME LIKE '_a%' --第2个是a的
 SELECT	LAST_NAME,HIRE_DATE FROM EMPLOYEES where HIRE_DATE like '%05'
-SELECT LAST_NAME,JOB_ID from EMPLOYEES where JOB_ID like 'SA\_%' ESCAPE '\' --告诉sql语句\是转义符号
+-- SELECT LAST_NAME,JOB_ID from EMPLOYEES where JOB_ID like 'SA\_%' ESCAPE '\' --告诉sql语句\是转义符号
+
 -- is NULL
 SELECT LAST_NAME,JOB_ID,COMMISSION_PCT from EMPLOYEES where COMMISSION_PCT is NOT NULL
 -- AND OR NOT
