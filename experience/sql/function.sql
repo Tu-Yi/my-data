@@ -1,5 +1,39 @@
---ORACLE
+-- function
 
+-- mysql
+-- 没有INITCAP
+-- CONCAT SUBSTR LENGTH INSTR LPAD TRIM LTRIM RTRIM REPLACE
+-- ROUND TRUNC MOD
+-- SYSDATE() NOW() 
+SELECT SYSDATE()
+SELECT NOW()
+SELECT CURDATE() --系统日期
+SELECT CURTIME() --系统时间
+-- DAYOFMONTH(date)
+SELECT DAYOFMONTH(SYSDATE()) -- 本月第几天
+SELECT DAYOFWEEK(SYSDATE()) -- 星期 日-1
+SELECT DAYOFYEAR(SYSDATE())  -- 年中的第几天
+SELECT DAYNAME(SYSDATE())  -- 星期 saturday
+SELECT LAST_DAY(SYSDATE())  -- 本月最后一天的日期
+-- DATE_FORMAT(date,format)
+SELECT DATE_FORMAT(SYSDATE(),'%Y年%c月%d日')  -- 日期转字符串
+SELECT STR_TO_DATE('2019年5月25日','%Y年%c月%d日')  --字符串转日期
+ALTER TABLE employees add COLUMN hire_date date
+INSERT INTO employees VALUES(DEFAULT,'King','king@qq.com',1,9000,0.6,STR_TO_DATE('2018年5月1日','%Y年%c月%d日'))
+SELECT DATE_FORMAT(hire_date,'%Y年%c月%d日') from employees where last_name='King'
+-- IFNULL(expr1,expr2) expr1 ? expr1:expr2
+-- NULLIF(expr1,expr2)
+-- IF(expr1,expr2,expr3) expr1 ? expr2:expr3
+-- COALESCE(value,...)
+-- CASE case_value
+	WHEN when_value THEN
+		statement_list
+	ELSE
+		statement_list
+END CASE;
+
+
+--ORACLE
 -- 字符函数
 -- 大小写 UPPER LOWER INITCAP(首字母大写)
 select ' The job id for ' || upper(LAST_NAME) || ' is ' || LOWER(JOB_ID) as "Employee details" from EMPLOYEES

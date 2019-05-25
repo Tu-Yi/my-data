@@ -9,6 +9,16 @@ select salary+commistion_pct from employees  -- 空值计算返回都是空
 select last_name name,salary 'salary me' FROM employees --别名 单引号双引号都可以
 select CONCAT(employees_id,'#',last_name,'#',email,'#',salary,'#',commistion_pct) from employees  -- 连接使用concat
 select DISTINCT dept_id from employees
+SELECT * FROM employees WHERE salary<>3000
+SELECT * FROM employees WHERE last_name LIKE '_2%'
+select * from employees WHERE last_name not LIKE '%u%'
+select * from employees WHERE salary BETWEEN 2000 AND 8000
+SELECT * from employees WHERE salary in (2000,5000,8000)
+SELECT * from employees WHERE commistion_pct is null
+SELECT * from employees WHERE commistion_pct is not null
+select * from employees ORDER BY salary DESC
+
+
 
 
 -- 表达式

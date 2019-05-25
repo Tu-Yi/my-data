@@ -1,4 +1,10 @@
 -- 组函数 AVG COUNT MAX MIN SUM
+
+-- mysql
+select MAX(salary),department_id from employees GROUP BY department_id HAVING MAX(salary)>5000
+
+
+
 -- AVG SUM 只能是数字
 SELECT AVG(SALARY),SUM(SALARY) from EMPLOYEES
 SELECT MIN(SALARY),MAX(SALARY) from EMPLOYEES

@@ -1,5 +1,27 @@
 -- 多表查询
 
+--mysql
+SELECT * FROM employeese, departments d where e.dept_id=d.departments_id
+SELECT E.last_name,E.salary,S.LEVEL FROM employees E, sal_level S WHERE E.salary BETWEEN 1000 AND 5000
+SELECT e.last_name,em.last_name from employees e, employees em where e.manager_id = em.employee_id
+select emp.LAST_NAME,dep.DEPARTMENT_NAME from EMPLOYEES emp LEFT JOIN DEPARTMENTS dep on emp.DEPARTMENT_ID=dep.DEPARTMENT_ID
+select d.department_name,e.last_name from employees e RIGHT JOIN departments d on e.department_id = d.department_id
+-- UNION 剔除重复行   UNION ALL 不剔除
+select emp.LAST_NAME,dep.DEPARTMENT_NAME from EMPLOYEES emp LEFT JOIN DEPARTMENTS dep on emp.DEPARTMENT_ID=dep.DEPARTMENT_ID
+UNION
+select e.last_name,d.department_name from employees e RIGHT JOIN departments d on e.department_id = d.department_id
+-- cross join  natural join INNER JOIN
+SELECT e.last_name,d.department_name FROM employees e NATURAL JOIN departments d USING(department_id)
+SELECT e.last_name,d.department_name FROM employees e inner JOIN departments d on e.department_id = d.department_id
+-- 子查询
+select last_name,salary from employees where salary >ANY (SELECT salary from employees where last_name='King')
+select * from employees where department_id in 
+(select department_id from employees where last_name='King') and last_name <> 'King'
+
+
+
+
+-- oracle
 -- 内连接 父级在后面
 -- 等值连接
 select EMP.LAST_NAME,DEP.DEPARTMENT_NAME from EMPLOYEES EMP,DEPARTMENTS DEP where EMP.DEPARTMENT_ID = DEP.DEPARTMENT_ID and EMP.LAST_NAME='Taylor'

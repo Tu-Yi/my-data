@@ -17,9 +17,9 @@ CREATE TABLE employees(employee_id int,last_name VARCHAR(30),salary FLOAT(8,2))
 SHOW TABLES
 drop TABLE employees2
 ALTER table employees RENAME employee
-alter table employee CHANGE COLUMN last_name name VARCHAR(30) --修改列名
-alter table employee MODIFY name VARCHAR(40)  --修改列类型
-alter table employee add COLUMN commission_pct float(4,2)  --增加列
+alter table employee CHANGE COLUMN last_name name VARCHAR(30) -- 修改列名
+alter table employee MODIFY name VARCHAR(40)  -- 修改列类型
+alter table employee add COLUMN commission_pct float(4,2)  -- 增加列
 alter TABLE employee DROP COLUMN commission_pct
 DESC employee
 
@@ -33,12 +33,12 @@ alter table dept MODIFY(SALARY NUMBER(8,2) DEFAULT NULL);
 alter table dept rename COLUMN dname to name
 alter table dept DROP COLUMN salary;
 rename dept to dept1;
-truncate table dept;  --删除所有数据保留表，截断表时不能给条件,截断表隐式事务
-drop table readyea;  --隐式事务
+truncate table dept;  -- 删除所有数据保留表，截断表时不能给条件,截断表隐式事务
+drop table readyea;  -- 隐式事务
 
 -- 约束 not NULL UNIQUE primary key  foreign key check
 
--- mysql 不支持check
+-- 约束 mysql 不支持check
 -- 创建表加约束
 CREATE TABLE departments(
 department_id int primary key auto_increment,
@@ -76,7 +76,7 @@ show keys from employees
 
 
 
--- oracle
+-- 约束 oracle
 -- NOT NULL
 create table dept80(id number,name varchar2(20) not null, salary number constraint dept80_notn not null);
 alter table dept80 add(location_id NUMBER)
@@ -165,6 +165,23 @@ create index dept_upper on DEPARTMENTS(UPPER(DEPARTMENT_NAME))
 select * from DEPARTMENTS where UPPER((DEPARTMENT_NAME)) =''
 -- 对一张表来说,如果有一个复合索引 on (col1,col2),就没有必要同时建立一个单索引 on col1;
 -- 如果查询条件需要,可以在已有单索引 on col1的情况下,添加复合索引on (col1,col2),对于效率有一定的提高
+
+-- 索引 mysql
+-- 普通索引
+show index from employees
+
+CREATE index emp_email_index on employees(email(25))
+alter TABLE employees ADD INDEX emp__index(PHONE_NUMBER(11))
+drop index emp__index on employees
+-- 唯一索引 列的值必须唯一 允许空值
+CREATE UNIQUE index emp_p_index on employees(PHONE_NUMBER(11))
+alter TABLE employees ADD UNIQUE emp__index(PHONE_NUMBER(11))
+-- 主键索引 唯一 不允许空值 就是添加主键约束
+alter TABLE employees add PRIMARY KEY(employee_id)
+-- 组合索引 最左前缀 创建顺序和查询条件顺序一样 必须从第1个开始 name/address/salary
+ALTER TABLE employees add INDEX rex_index(last_name,salary)
+
+
 
 
 -- 同义词
