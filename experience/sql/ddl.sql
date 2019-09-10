@@ -134,6 +134,9 @@ WHERE ROWNUM <= 40
 )  
 WHERE RN >= 21
 
+-- mysql 分页
+SELECT * FROM employees ORDER BY EMPLOYEE_ID LIMIT 0,2 -- LIMIT 开始位置 数量
+SELECT * FROM employees ORDER BY EMPLOYEE_ID LIMIT 2 OFFSET 0  -- LIMIT 数量 OFFSET 开始位置
 
 -- 序列
 create sequence dept_seq INCREMENT by 10 start WITH 120 maxvalue 9999 nocache nocycle
@@ -180,6 +183,17 @@ alter TABLE employees ADD UNIQUE emp__index(PHONE_NUMBER(11))
 alter TABLE employees add PRIMARY KEY(employee_id)
 -- 组合索引 最左前缀 创建顺序和查询条件顺序一样 必须从第1个开始 name/address/salary
 ALTER TABLE employees add INDEX rex_index(last_name,salary)
+-- 全文索引
+alter table emp7 add fulltext emp7_content_fullindex(content)
+create table emp8(emp_id int primary key auto_increment,content text,fulltext emp8_content_fullindex(content))
+drop index emp8_content_fullindex on emp8
+select * from emp8 where match(content)AGAINST('he') -- 找不到 分词
+select * from emp8 where match(content)AGAINST('bjsxt')
+select * from emp8 where match(content)AGAINST('你好')  -- 解析器不支持
+alter table emp8 add fulltext emp8_content_full(content) with parser ngram
+select * from emp8 where match(content)AGAINST('你好')  -- 好了
+select * from emp8 where match(content)AGAINST('中文')  -- 中文分词和英文不同
+
 
 
 
@@ -187,3 +201,30 @@ ALTER TABLE employees add INDEX rex_index(last_name,salary)
 -- 同义词
 create synonym em for EMPLOYEES
 drop synonym em
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
