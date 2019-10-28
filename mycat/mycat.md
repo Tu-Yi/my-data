@@ -27,3 +27,7 @@ https://www.codetd.com/article/4944464
 springboot+mycat Failed to obain JDBc CONNECTION
 
 https://blog.csdn.net/u010448530/article/details/84953767
+
+**mycat配置**
+
+ https://www.infoq.cn/article/DMPz9u8BLIr2Imq0THgW 
