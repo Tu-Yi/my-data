@@ -3,6 +3,8 @@ data skill | keep updating
 
 [练习](experience.md)
 
+[技巧](skill.md)
+
 ## oracle
 
 [安装配置连接基础](oracle/basic.md)
@@ -20,4 +22,12 @@ data skill | keep updating
 ### 数据库范式
 
 [范式基础](nf.pdf)
+
+### mycat
+
+[mycat](mycat/mycat.md)
+
+### redis
+
+[redis](redis/redis.md)
 
