@@ -344,7 +344,9 @@ https://shockerli.net/post/mysqldump-put-qiniu/
 
 https://juejin.im/entry/5b8f53876fb9a05d2c4384a8
 
+## 主从复制
 
+ https://juejin.im/post/5b0f91ab518825153749b1db 
 
 ## 问题集锦
 
