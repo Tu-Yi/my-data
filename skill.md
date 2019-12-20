@@ -366,7 +366,9 @@ https://www.itread01.com/content/1548699307.html
 
 decimal(5,2)5是定点精度，2是小数位数。decimal(a,b)a指定指定小数点左边和右边可以存储的十进制数字的最大个数，最大精度38。b指定小数点右边可以存储的十进制数字的最大个数。小数位数必须是从 0 到 a之间的值。默认小数位数是 0
 
+**替代模糊查询的方法**
 
+ https://blog.csdn.net/zuihongyan518/article/details/81131042 
 
 
 
