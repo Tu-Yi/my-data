@@ -697,3 +697,163 @@ alter table test drop primary key;
   ```
   •   3、对英文检索时忽略大小写
   ```
+
+## 联合索引
+
+- 什么是联合索引？
+
+```
+联合索引又称组合索引或者复合索引，是建立在俩列或者多列以上的索引。
+```
+
+- 怎么来创建联合索引？
+
+```
+alter table 表名 add index(字段1,字段2,字段3);
+
+alter table test add index(username,servnumber,password);
+```
+
+- 怎么删除联合索引？
+
+```
+alter table test drop index username;
+```
+
+- 为什么要使用联合索引，而不使用多个单列索引？
+
+```
+联合索引的效率远远高于单列索引
+```
+
+- 联合索引的最左原则
+- 注意点总结：
+
+```
+ 索引并非越多越好，过多的索引会增加数据的维护速度还有磁盘空间的浪费。
+
+• 当表的数据量很大的时候，可以考虑建立索引。
+
+• 表中经常查数据的字段，可以考虑建立索引。
+
+• 想要保证表中数据的唯一性，可以考虑建立唯一索引。
+
+• 想要保证俩张表中的数据的完整性跟准确性，可以考虑建立外键约束。
+
+• 经常对多列数据进行查询时，可以考虑建立联合索引。
+```
+
+## 慢查询日志
+
+- 第一步：查看是否已经开启了慢查询日志
+
+```
+mysql> show variables like 'slow%';
++---------------------+--------------------------------------+
+| Variable_name       | Value                                |
++---------------------+--------------------------------------+
+| slow_launch_time    | 2                                    |
+| slow_query_log      | OFF                                  |
+| slow_query_log_file | /data/mydata/xdclass-public-slow.log |
++---------------------+--------------------------------------+
+```
+
+- 第二步：开启慢查询日志
+
+```
+set global slow_query_log = on ;
+
+日志路径也可以自定义：
+
+set global slow_query_log_file = '路径';
+```
+
+- 第三步：查看慢查询的时间临界值
+
+```
+show variables like '%long%';
+```
+
+- 第四步：设置慢查询的时间标准
+
+```
+set long_query_time=0.4;
+```
+
+- 注意：重启mysql服务会让在交互界面设置的慢查询恢复到默认
+
+```
+永久生效的设置方法：修改配置文件 vi /etc/my.cnf
+[mysqld]
+slow_query_log = 1
+long_query_time = 0.1
+slow_query_log_file =/usr/local/mysql/mysql_slow.log
+
+最后必须重启服务才能生效！
+```
+
+## 性能详情
+
+- 第一步：查看性能详情是否开启
+
+```
+mysql> show variables like '%profiling%';
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| have_profiling         | YES   |
+| profiling              | OFF   |
+| profiling_history_size | 15    |
++------------------------+-------+
+```
+
+- 第二步：开启性能记录功能
+
+```
+set profiling = on ;
+```
+
+- 第三步：查看性能的记录
+
+```
+mysql> show profiles;
++----------+------------+---------------------------------------------------+
+| Query_ID | Duration   | Query                                             |
++----------+------------+---------------------------------------------------+
+|        1 | 0.00177775 | show variables like '%profiling%'                 |
+|        2 | 0.00037900 | select * from test where id='087878'              |
+|        3 | 0.34618025 | select * from test where servnumber='1367008787'  |
+|        4 | 0.31986825 | select * from test where servnumber='13670087879' |
++----------+------------+---------------------------------------------------+
+```
+
+- 第四步：查看语句的执行性能详情
+
+```
+mysql> show profile for query 4;
++----------------------+----------+
+| Status               | Duration |
++----------------------+----------+
+| starting             | 0.000100 |
+| checking permissions | 0.000010 |
+| Opening tables       | 0.000023 |
+| init                 | 0.000045 |
+| System lock          | 0.000015 |
+| optimizing           | 0.000016 |
+| statistics           | 0.000028 |
+| preparing            | 0.000020 |
+| executing            | 0.000006 |
+| Sending data         | 0.319489 |
+| end                  | 0.000037 |
+| query end            | 0.000012 |
+| closing tables       | 0.000012 |
+| freeing items        | 0.000040 |
+| cleaning up          | 0.000017 |
++----------------------+----------+
+```
+
+- 性能线程的详细解释官方文档链接：
+
+```
+https://dev.mysql.com/doc/refman/5.7/en/general-thread-states.html
+```
